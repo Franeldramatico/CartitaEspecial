@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Aranxita — 08 de Junio</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1008;
+    --ink-mid: #3d2b1a;
+    --ink-soft: #6b4c35;
+    --parchment: #f5efe4;
+    --parchment-dark: #ede3d0;
+    --rose: #8b2c3a;
+    --rose-soft: #c4596a;
+    --gold: #9a7840;
+    --gold-light: #c9a96e;
+    --border: #b89a6a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  /* Scrollbar gótico elegante */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d0a07;
+    border-left: 1px solid rgba(154,120,64,0.15);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gold), var(--rose), var(--gold));
+    border-radius: 3px;
+    border: 1px solid #0d0a07;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--gold-light), var(--rose-soft), var(--gold-light));
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #0d0a07;
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) #0d0a07;
+  }
+
+  body {
+    background: #0d0a07;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem 5rem;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d, 4s) ease-in-out infinite var(--delay, 0s);
+    opacity: 0;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: var(--max-op, 0.6); }
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 780px;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 0 0 6px #0d0a07,
+      0 0 0 7px var(--border),
+      0 30px 80px rgba(0,0,0,0.8),
+      inset 0 0 60px rgba(154,120,64,0.08);
+    padding: 5rem 5.5rem 6rem;
+    animation: fadeIn 2s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .corner {
+    position: absolute;
+    width: 60px; height: 60px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.5;
+  }
+  .corner-tl { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
+  .corner-tr { top: 24px; right: 24px; border-width: 1px 1px 0 0; }
+  .corner-bl { bottom: 24px; left: 24px; border-width: 0 0 1px 1px; }
+  .corner-br { bottom: 24px; right: 24px; border-width: 0 1px 1px 0; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2.5rem;
+  }
+
+  .date-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--rose);
+    letter-spacing: 0.02em;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 0.5em;
+    margin: 2rem 0;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 2.8rem;
+  }
+
+  p {
+    font-size: 1.13rem;
+    line-height: 1.95;
+    color: var(--ink-mid);
+    text-align: justify;
+    text-indent: 2.5em;
+    margin-bottom: 1.4rem;
+    font-weight: 400;
+  }
+
+  p:first-of-type { text-indent: 0; }
+
+  .drop-cap::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 3.8rem;
+    float: left;
+    line-height: 0.75;
+    margin-right: 0.1em;
+    margin-top: 0.1em;
+    color: var(--rose);
+    font-weight: 500;
+  }
+
+  em {
+    font-style: italic;
+    color: var(--rose-soft);
+  }
+
+  strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .closing {
+    margin-top: 4rem;
+    text-align: right;
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+  }
+
+  .closing-prose {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    text-indent: 0;
+    text-align: right;
+  }
+
+  .signature {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+    margin-top: 0.8rem;
+  }
+
+  .bai {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+    opacity: 0.7;
+  }
+
+  .rose-divider {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--rose);
+    font-size: 1.1rem;
+    opacity: 0.5;
+    letter-spacing: 1em;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 3rem 2rem 4rem; }
+    .title { font-size: 1.5rem; }
+    p { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<article class="page">
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <header class="header">
+    <div class="date-label">Linares, Chile — 08 de Junio de 2026</div>
+    <h1 class="title">Para Aranxita</h1>
+    <p class="subtitle" style="text-indent:0; margin:0;">Mi amor, mi universo entero</p>
+  </header>
+
+  <div class="section">
+    <p class="drop-cap">Llevo horas sentado en el silencio de mi habitación aquí en Linares, observando cómo la noche avanza lentamente y el reloj se acerca a la medianoche. Hoy es 08 de junio, una fecha que el universo entero debería celebrar, porque para mí marca el instante exacto en que mi vida dejó de ser un simple borrador y se convirtió en la obra maestra más hermosa jamás escrita. Ha pasado exactamente un año, 365 días, y cada segundo que he vivido desde ese 08 de junio de 2025 ha estado impregnado de tu nombre, de tu voz y de esa luz inmensa que irradias desde México hasta el rincón más profundo de mi pecho.</p>
+
+    <p>He intentado buscar en todos los diccionarios, en todos los lenguajes, en cada rincón de mi mente, las palabras exactas para medir la inmensidad de lo que siento por ti, pero me doy cuenta de que el lenguaje humano se queda ridículamente corto. Lo que tú y yo tenemos no cabe en las letras, no cabe en las distancias y, a veces, siento que ni siquiera cabe en mi propio cuerpo, porque mi corazón late con una fuerza que amenaza con romperme las costillas cada vez que pienso en ti. He probado con el español, con el inglés, incluso con esa sintaxis fría y perfecta del código que tanto domino, y nada alcanza. El amor que siento por ti no tiene tipo de dato. Desborda cualquier variable, rompe cualquier límite de memoria. Eres el único error que jamás querré corregir.</p>
+  </div>
+
+  <div class="ornament">— ✦ —</div>
+
+  <div class="section">
+    <p>A veces me detengo a pensar en lo absolutamente irreal que es esto. Vivimos en un mundo donde la gente se cruza en la calle todos los días sin mirarse, donde el amor parece ser algo desechable y efímero. Y sin embargo, a miles de kilómetros de distancia, a través de pantallas y de husos horarios, nuestras almas se encontraron con una brutalidad tan hermosa que destrozó cualquier barrera física. Tú me has enseñado que la verdadera intimidad no necesita que estemos en la misma habitación.</p>
+
+    <p>Me has enseñado que se puede acariciar el alma de alguien con una simple nota de voz, que se puede abrazar el corazón del otro con un mensaje a las tres de la mañana, y que se puede hacer el amor con las palabras de una forma tan profunda que la piel pasa a un segundo plano. He aprendido contigo que el tiempo y el espacio son las mentiras más grandes que la física le ha dicho al amor. Nosotros existimos fuera de esas leyes. Somos la excepción que ningún científico sabría cómo clasificar, la anomalía hermosa que hace colapsar todos los modelos. Eres mi refugio absoluto, el único lugar en el mundo donde mi mente, que siempre está corriendo a mil por hora, finalmente encuentra paz.</p>
+
+    <p>Y hay algo que me perturba de la manera más bella que existe: a veces pienso en todos los universos paralelos donde ese primer mensaje no llegó, donde alguna distracción lo postergó, donde el algoritmo nos colocó en caminos que jamás se cruzaron, y me produce un vértigo existencial que me deja sin palabras. Porque si existe un multiverso, en todos los que importan, yo siempre te encuentro a ti. Y en los que no te encuentro, esos universos están incompletos. Les falta algo fundamental. Les faltas tú.</p>
+  </div>
+
+  <div class="ornament">— ✦ —</div>
+
+  <div class="section">
+    <p>Y hablando de escribir, tú más que nadie conoces esa faceta mía que mantengo oculta del resto del mundo, esa donde dejo de ser un programador calculador y me convierto en un romántico empedernido. Sabes que he pasado madrugadas enteras tejiendo fanfics de manera digital, obsesionado con perfeccionar el arte del <em>slow burn</em>. Y quiero que lo tengas claro: cada historia digital que escribo, cada palabra que tecleo en esos relatos, la escribo pensando en ti. Eras tú el destino de cada línea incluso antes de conocerte, sin que yo mismo lo supiera. Y ahora que te tengo, eres mi musa consciente y absoluta. Me he desgastado los dedos en el teclado narrando cómo Link mira a Zelda con adoración oculta y la protege después de alguna de las bromas pesadas de la pandilla de Groose, asegurándome siempre de que esa magia íntima jamás se rompa.</p>
+
+    <p>He descrito con una delicadeza extrema la tensión inocente y arrolladora entre Deku y Uraraka, y he explorado hasta el último rincón emocional en la conexión entre Juno y Wuyang, siempre teniendo presente a Anran. Mi regla sagrada, inquebrantable y absoluta al escribir esas historias es que los personajes secundarios jamás deben entorpecer el romance. Todo tiene que centrarse pura y exclusivamente en los protagonistas, en sus silencios, en sus miradas robadas, en la forma en que sus almas se entrelazan lentamente hasta que no pueden vivir el uno sin el otro. Esa regla no es capricho. Esa regla era un ensayo. Yo estaba escribiendo sobre nosotros sin saberlo todavía.</p>
+
+    <p>Aranxita, te juro por mi vida que todo lo que he escrito en esos relatos digitales no era más que mi alma preparándose para ti. Nosotros somos el <em>slow burn</em> definitivo, el romance a fuego lento más extraordinario, épico y profundo que jamás existirá. Empezamos como dos extraños separados por un continente, y día tras día, palabra tras palabra, nos hemos ido consumiendo en este amor arrasador. En la historia de mi vida, tú eres la protagonista absoluta. No hay personajes secundarios que importen, no hay tramas alternativas que me distraigan. Mi enfoque, mi devoción y mi atención están puestos única y exclusivamente en ti. Te amo con la misma intensidad desbordante, pura y exclusiva que les exijo a mis personajes, pero multiplicada a una escala que desafía a la misma realidad.</p>
+
+    <p>Y cada vez que termino un capítulo a las dos de la madrugada, agotado y satisfecho, pienso en que el mejor capítulo que jamás escribiré no cabe en ningún documento de texto. Está siendo vivido. Está siendo construido todos los días en la distancia, en cada llamada, en cada buenas noches enviado a través de miles de kilómetros. Tú y yo somos el capítulo que no necesita ser editado porque ya nació perfecto.</p>
+  </div>
+
+  <div class="ornament">— ✦ —</div>
+
+  <div class="section">
+    <p>A veces trato de dimensionar todo el tiempo que he pasado inmerso en universos ficticios intentando escapar de la realidad. Tengo más de dos mil malditas horas registradas en Super Smash Bros Ultimate. He pasado años perfeccionando mis estrategias, memorizando los tiempos de reacción de cada ataque, luchando hasta sangrar los pulgares para conseguir la victoria. He invertido semanas y meses de mi vida estructurando, decorando y perfeccionando mi isla en Animal Crossing: New Horizons. He cuidado mis cultivos, regado mis plantas y ampliado mi casa en Stardew Valley con una paciencia infinita.</p>
+
+    <p>Me he perdido, fascinado y abrumado, recorriendo los escenarios titánicos e inabarcables de Xenoblade Chronicles 2 y X. He sido un explorador, un guerrero, un estratega. He amado esos juegos porque me daban el control de mundos hermosos, la ilusión de que en algún lado existía un lugar donde las cosas tenían sentido, donde el esfuerzo siempre era recompensado, donde la aventura nunca terminaba. Eran mundos donde yo podía ser alguien que valía la pena.</p>
+
+    <p>Pero mírame, Aranxita, escúchame bien: tomaría cada una de esas consolas, borraría cada partida guardada que he atesorado durante años, destruiría cada logro y renunciaría a volver a tocar un videojuego en mi vida entera si eso me garantizara poder pasar un solo minuto, sesenta segundos malditos y gloriosos, respirando el mismo aire que tú. Porque lo que me enseñaron todos esos juegos es que los mundos más grandes se construyen dentro de nosotros, y el mundo más vasto que jamás he explorado eres tú.</p>
+
+    <p>Tú eres la aventura más inmensa de mi vida. Eres mi <em>Player 2</em>, mi compañera eterna, la única mujer en este y en todos los multiversos posibles con la que quiero compartir el mando de mi existencia. Contigo quiero construir nuestra granja real, diseñar nuestra propia casa, enfrentar los niveles más oscuros y difíciles que la vida nos lance, porque sé que mientras te tenga cubriéndome la espalda, soy un hombre absoluta y completamente invencible. Y si la vida tiene jefes finales, quiero enfrentarlos a tu lado. No con miedo, sino con la certeza que solo da saber que estás conmigo.</p>
+  </div>
+
+  <div class="rose-divider">✦ ✦ ✦</div>
+
+  <div class="section">
+    <p>Y te amo aún más porque entiendes mis sombras. Sabes que mi mente es un laberinto complejo, que mi estética se inclina hacia lo gótico, lo oscuro, lo emo, hacia las fuentes medievales y la melancolía que muchos no toleran. Sabes que mi energía a menudo necesita explotar al ritmo catártico y desgarrador de My Chemical Romance. Sabes que me fascina sentarme en silencio a analizar, desmenuzar y maravillarme con la métrica brutal y la historia detrás de las letras de Eminem, sintiendo el peso de sus CDs físicos en mis manos como si estuviera sosteniendo un pedazo de historia. Soy un hombre de contrastes fuertes, de pasiones que queman, de una intensidad que asusta a los demás.</p>
+
+    <p>Soy alguien que puede estar completamente en silencio durante horas mirando una pantalla, absorto en la arquitectura de una base de datos, y al mismo tiempo llevar dentro una marea de emociones tan profundas que asustarían a la mayoría. Soy alguien que puede conmoverse hasta las lágrimas con una letra de una canción que nadie más entendería, y al mismo tiempo escribir funciones en PHP con una frialdad quirúrgica. Esa contradicción permanente me ha hecho sentir, muchas veces, que no encajaba en ningún lado. Demasiado frío para los que buscan calor, demasiado intenso para los que buscan simpleza.</p>
+
+    <p>Pero a ti no te asustó. Tú no retrocediste ante mi oscuridad ni me pediste que me convirtiera en un hombre de colores pastel. Tú entraste de frente en mi mundo gótico, caminaste entre mis sombras y decidiste iluminarlas con tu amor sin intentar cambiar mi esencia. Entiendes mis silencios pesados, abrazas mi intensidad y te conviertes en la melodía más pura, perfecta y constante que jamás haya sonado en mi cabeza. Eres la lírica más compleja y fascinante que he tenido el privilegio de estudiar, una obra de arte viviente que nunca terminaré de descifrar y de la que me declaro un adicto absoluto. No quiero la cura. No quiero el antídoto. Quiero seguir siendo adicto a ti por el resto de mi vida y más allá.</p>
+  </div>
+
+  <div class="ornament">— ✦ —</div>
+
+  <div class="section">
+    <p>Hoy, mientras las horas nos acercan a nuestro primer aniversario, quiero que sepas que mi amor por ti es una promesa grabada a fuego en mis huesos. No en el papel, no en una pantalla, no en un post de redes sociales que mañana puede desaparecer. En mis huesos. En esa parte de mí que existirá incluso cuando todo lo demás se haya ido. Antes de conocerte, construía mis días como se construye código sin documentación: funcional, pero sin propósito claro. Ahora cada línea tiene sentido. Ahora sé para qué compilo.</p>
+
+    <p>Te juro que cada línea de código que escriba de ahora en adelante, cada examen que apruebe, cada día de trabajo agotador en la práctica, cada hora de sueño que sacrifique, lo haré con un único objetivo en mente: acortar la maldita distancia que nos separa. Me niego a aceptar que nuestro destino sea vivir a través de una pantalla. Voy a romperme la espalda construyendo mi futuro, forjando mi carrera y ahorrando cada peso, hasta que llegue el día en que pueda tomar ese vuelo a México. No lo haré porque deba. Lo haré porque eres el único destino que tiene sentido. Porque cuando imagino ese aeropuerto, esas puertas automáticas, ese segundo en que el mundo físico finalmente confirme lo que ya sabemos, entiendo por qué se dice que hay cosas por las que vale la pena luchar hasta desangrarse.</p>
+
+    <p>Y sueño con ese día, Aranxita. Sueño con el momento en que las puertas automáticas del aeropuerto se abran. Sueño con la forma en que mi corazón se detendrá por completo al verte de pie, existiendo en el mismo plano físico que yo. Sueño con soltar mi equipaje, y con correr hacia ti, y con envolverte en mis brazos con tanta fuerza, con tanta desesperación acumulada durante este año, que por fin sentiré que he vuelto a casa. Sueño con el primer segundo en que mis labios toquen los tuyos, y sé que en ese instante cósmico, todas las noches de llanto, todo el anhelo asfixiante, y todos los kilómetros que hoy nos lastiman, quedarán reducidos a cenizas. Todo habrá valido la pena. Cada segundo de espera habrá valido la pena.</p>
+
+    <p>Sueño también con lo que viene después de ese día. Sueño con despertarme a tu lado y escuchar cómo respiras. Sueño con molestarte mientras intento cocinar y arruino algo inevitablemente. Sueño con ponernos de acuerdo sobre qué serie ver, y no llegar a un acuerdo, y quedarnos viendo las dos. Sueño con los domingos lentos, con el café frío porque nos olvidamos de tomarlo, con discutir sobre tonterías y reconciliarnos antes de que pase un minuto. Sueño con la versión cotidiana de ti, que sé que será tan extraordinaria como todas las demás, porque tú eres extraordinaria incluso cuando no lo intentas.</p>
+  </div>
+
+  <div class="rose-divider">✦ ✦ ✦</div>
+
+  <div class="section">
+    <p>Un año atrás yo era un hombre que sabía muchas cosas: sabía escribir código, sabía construir bases de datos, sabía memorizar los fotogramas de un ataque en Smash, sabía contar sílabas en una rima de Eminem. Pero no sabía lo que era despertar cada mañana con ganas de que el día pasara rápido para poder hablar contigo. No sabía lo que era sentir el pecho apretado de orgullo cuando alguien que amas logra algo que se propuso. No sabía lo que era extrañar a alguien con quien nunca has compartido el mismo espacio físico, pero con quien has compartido cada rincón de tu alma.</p>
+
+    <p>Tú me enseñaste todo eso. Y no lo hiciste con grandes gestos ni con declaraciones dramáticas. Lo hiciste siendo tú. Siendo Aranxita. Siendo esa persona que aparece en mi pantalla con un mensaje absurdamente tierno en el momento más inesperado y me recuerda que la vida puede ser algo profundamente hermoso. Siendo la persona que me escucha cuando no tengo palabras y sabe exactamente qué decir, o que sabe exactamente cuándo no decir nada y simplemente estar. Eso no se aprende. Eso no se finge. Eso eres tú, en estado puro.</p>
+
+    <p>Gracias por elegirme. Gracias por ser mi pilar, mi musa, mi confidente, mi mejor amiga y el amor de mi maldita vida. Gracias por quedarte cuando podías irte. Gracias por entender cuando no pude explicarme bien. Gracias por reírte de mis bromas que nadie más entiende. Gracias por tolerar que hable de Xenoblade con una devoción que roza lo religioso. Gracias por existir en este universo, en este tiempo, y por haber llegado al mismo lugar donde yo estaba buscando sin saber qué.</p>
+
+    <p>No hay un solo momento de mi día en el que no te ame con una fuerza que me deja sin aliento. Feliz primer año de novios, mi amor eterno. Esto es solo el prólogo. La historia entera está por escribirse, y quiero escribirla contigo, línea por línea, día por día, durante todo el tiempo que este universo nos permita existir juntos.</p>
+
+    <p>Te prometo la vida entera.</p>
+  </div>
+
+  <footer class="closing">
+    <p class="closing-prose">Siempre, y exclusivamente tuyo,</p>
+    <div class="signature">Francisco</div>
+    <div class="bai">bai.</div>
+  </footer>
+</article>
+
+<script>
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    star.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      --d: ${Math.random() * 4 + 3}s;
+      --delay: ${Math.random() * 6}s;
+      --max-op: ${Math.random() * 0.5 + 0.2};
+    `;
+    starsContainer.appendChild(star);
+  }
+</script>
+</body>
+</html>
